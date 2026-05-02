@@ -23,6 +23,7 @@ def main():
                 return
         
         screen.fill("black")
+        playa.update(dt)
         playa.draw(screen)
         pygame.display.flip()
         
