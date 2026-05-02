@@ -1,3 +1,5 @@
+from asteroidfield import AsteroidField
+from asteroid import Asteroid
 from player import Player
 import pygame
 import constants
@@ -13,11 +15,15 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    asteroids = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
 
+    AsteroidField.containers = (updatable)
+    Asteroid.containers = (asteroids, updatable, drawable)
     Player.containers = (updatable, drawable)
 
+    asteroidfield = AsteroidField()
     playa = Player(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2)
 
     while True:
