@@ -13,6 +13,11 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    Player.containers = (updatable, drawable)
+
     playa = Player(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2)
 
     while True:
@@ -23,8 +28,9 @@ def main():
                 return
         
         screen.fill("black")
-        playa.update(dt)
-        playa.draw(screen)
+        updatable.update(dt)
+        for dr in drawable:
+            dr.draw(screen)
         pygame.display.flip()
         
         dt = clock.tick(60) / 1000
